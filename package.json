@@ -1,0 +1,25 @@
+{
+  "name": "azuredurablefunction",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prestart": "npm run build",
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
+  },
+  "dependencies": {
+    "@azure/ai-text-analytics": "^5.1.0-beta.3",
+    "axios": "^0.21.1",
+    "durable-functions": "^1.4.4",
+    "html-to-text": "^6.0.0",
+    "qs": "^6.9.4"
+  },
+  "devDependencies": {
+    "@azure/functions": "^1.2.2",
+    "@types/html-to-text": "^6.0.0",
+    "@types/node": "^14.14.17",
+    "typescript": "^3.3.3"
+  }
+}

@@ -1,0 +1,45 @@
+###
+@baseUrlKyma = https://<PUT_YOUR_MOCK_URL_HERE>.kyma.shoot.live.k8s-hana.ondemand.com
+@oAuthUrlKyma = https://oauth2.<PUT_YOUR_MOCK_URL_HERE>/oauth2/token
+
+### GET on Kyma - node, path = /free
+GET {{baseUrlKyma}}/free
+
+### GET on Kyma - node, path = /prot => error due to missing authentication
+GET {{baseUrlKyma}}/orderhistory
+
+---
+### Get token via ClientID:ClientSecret
+# @name auth
+POST {{oAuthUrlKyma}}
+Content-type: application/x-www-form-urlencoded
+Authorization: Basic <CLINETID:CLIENTSECRET>
+
+grant_type=client_credentials
+&scope=orderhistaccessscope
+
+### Call the secured endpoint
+GET {{baseUrlKyma}}/orderhistory
+Authorization: Bearer {{auth.response.body.access_token}}
+
+### Call the secured endpoint with valid values
+# @name resultvalid
+GET {{baseUrlKyma}}/orderhistorybybpid/1245783695
+Authorization: Bearer {{auth.response.body.access_token}}
+
+### Call Durable Function with result
+GET http://localhost:7071/api/orchestrators/EmailAnalyzerOrchestrator HTTP/1.1
+content-type: application/json
+
+{{resultvalid.response.body.*}}
+
+### Call the secured endpoint with invalif values
+# @name resultnotvalid
+GET {{baseUrlKyma}}/orderhistorybybpid/1245783690
+Authorization: Bearer {{auth.response.body.access_token}}
+
+### Call Durable Function with result
+GET http://localhost:7071/api/orchestrators/EmailAnalyzerOrchestrator HTTP/1.1
+content-type: application/json
+
+{{resultnotvalid.response.body.*}}
