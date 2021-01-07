@@ -1,7 +1,7 @@
 ﻿import * as df from "durable-functions"
 
 const orchestrator = df.orchestrator(function* (context) {
-    
+
     const emailData = yield context.df.callActivity("GetEmailsActivity", context.bindingData.input)
 
     context.bindingData.input.emailData = emailData
