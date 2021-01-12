@@ -2,9 +2,6 @@
 @baseUrlKyma = https://<PUT_YOUR_MOCK_URL_HERE>.kyma.shoot.live.k8s-hana.ondemand.com
 @oAuthUrlKyma = https://oauth2.<PUT_YOUR_MOCK_URL_HERE>/oauth2/token
 
-### GET on Kyma - node, path = /free
-GET {{baseUrlKyma}}/free
-
 ### GET on Kyma - node, path = /prot => error due to missing authentication
 GET {{baseUrlKyma}}/orderhistory
 
