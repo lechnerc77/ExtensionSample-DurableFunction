@@ -1,6 +1,6 @@
 # Durable Function for Email and Sentiment Analysis
 
-![Overview](./pics/Overview_Azure.png)
+![Overview](./pics/Overview_Azure_WhiteBG.png)
 
 This repository contains the source code for the Azure Durable Function executing an email search via Microsoft Graph and an sentiment analysis via Cognitive Services.
 
